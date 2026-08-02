@@ -37,6 +37,7 @@ function buildHeader() {
         <button class="nav__toggle" aria-expanded="false" aria-controls="menu">☰ Menu</button>
         <ul class="nav__links" id="menu">
           ${links}
+          <li class="nav__cta"><a class="btn btn--primary" href="../adherer.html">Adhérer</a></li>
         </ul>
       </nav>
     </header>`;
