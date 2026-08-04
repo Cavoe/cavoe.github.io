@@ -45,7 +45,6 @@ function buildHeader() {
 /* ---- Pied de page ------------------------------------------------------- */
 function buildFooter() {
     const year = new Date().getFullYear();
-    const links = NAV_LINKS.map((l) => `<li><a href="${l.href}">${l.label}</a></li>`).join("");
 
     return `
     <footer class="site-footer">
@@ -56,10 +55,12 @@ function buildFooter() {
           <p class="footer__tagline">${SITE_TAGLINE}</p>
         </div>
         <div>
+          <p>Nous connaître</p>
+          <a href="bureau.html">Le bureau</a>
+        </div>
+        <div>
           <p>Nous contacter</p>
-          <ul>
-            <li><a href="mailto:cavoe+contact@proton.me">cavoe+contact@proton.me</a></li>
-          </ul>
+          <a href="mailto:cavoe+contact@proton.me">cavoe+contact@proton.me</a>
         </div>
       </div>
       <div class="wrap footer__bottom">
