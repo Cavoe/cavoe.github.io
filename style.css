@@ -587,7 +587,7 @@ img {
 .site-footer::before {
   content: '';
   display: block;
-  height: 6px;
+  height: 12px;
   background: var(--triad);
 }
 .site-footer a {
