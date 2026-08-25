@@ -7,7 +7,7 @@
    Pour ajouter / retirer / renommer une page : modifie le tableau NAV_LINKS.
    ========================================================================= */
 
-const SITE_NAME = "CAVOE";
+const SITE_NAME = "CAVŒ";
 const SITE_TAGLINE = "Découvrir · Comprendre · Partager";
 const SITE_BASELINE = "Collections d'accessoires autour du vin et œnophiles";
 const LOGO_SRC = "assets/titre-cavoe.png";
@@ -32,7 +32,7 @@ function buildHeader() {
     <header class="site-header">
       <nav class="nav wrap" aria-label="Navigation principale">
         <a class="brand" href="index.html" aria-label="${SITE_NAME} — accueil">
-          <img src="${LOGO_SRC}" alt="Cavoe">
+          <img src="${LOGO_SRC}" alt="Cavœ">
         </a>
         <button class="nav__toggle" aria-expanded="false" aria-controls="menu">☰ Menu</button>
         <ul class="nav__links" id="menu">
