@@ -597,6 +597,17 @@ img {
   max-height: 15vw;
 }
 
+/* Page partenaires */
+.visit-partner-btn {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+
 /* -------------------------------------------------------------------------
    Pied de page
    ------------------------------------------------------------------------- */
