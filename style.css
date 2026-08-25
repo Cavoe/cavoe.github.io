@@ -576,6 +576,27 @@ img {
   border-bottom: 1px solid var(--line);
 }
 
+/* Liste des partenaires */
+
+.liste-partenaires {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1em 0;
+  list-style: none;
+}
+
+.liste-partenaires li {
+  margin: 0 15px 15px 15px;
+  flex: 0 0 auto;
+}
+
+.liste-partenaires li a {
+  display: block;
+  max-width: 15vw;
+  max-height: 15vw;
+}
+
 /* -------------------------------------------------------------------------
    Pied de page
    ------------------------------------------------------------------------- */
@@ -643,7 +664,6 @@ img {
 .d-block {
   display: block;
 }
-
 /* -------------------------------------------------------------------------
    Responsive
    ------------------------------------------------------------------------- */
