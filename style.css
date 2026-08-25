@@ -40,9 +40,9 @@
   /* Dégradé « trois vins » — motif signature */
   --triad: linear-gradient(
     90deg,
-    var(--wine) 0 33.33%,
+    var(--rose) 0 33.33%,
     var(--gold-soft) 33.33% 66.66%,
-    var(--rose) 66.66% 100%
+    var(--wine) 66.66% 100%
   );
 }
 
@@ -397,13 +397,13 @@ img {
   text-transform: uppercase;
 }
 .triptych > div:nth-child(1) .k {
-  color: var(--wine);
+  color: var(--rose);
 }
 .triptych > div:nth-child(2) .k {
   color: var(--gold);
 }
 .triptych > div:nth-child(3) .k {
-  color: var(--rose);
+  color: var(--wine);
 }
 .triptych p {
   margin: 0.5rem 0 0;
