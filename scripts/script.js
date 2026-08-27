@@ -14,9 +14,9 @@ const LOGO_SRC = "assets/titre-cavoe.png";
 
 const NAV_LINKS = [
     { href: "index.html",      label: "Accueil" },
-    { href: "evenements.html", label: "Événements" },
-    { href: "reglement.html", label: "Règlement" },
     { href: "association.html", label: "L'association" },
+    { href: "evenements.html", label: "Événements" },
+    { href: "reglement.html", label: "Règles" },
 ];
 
 /* Page courante, pour surligner le bon lien */
@@ -59,6 +59,7 @@ function buildFooter() {
           <p>Nous connaître</p>
           <a style="display: block" href="association.html#creation">Notre histoire</a>
           <a style="display: block" href="association.html#bureau">Le bureau</a>
+          <a style="display: block; color:#d8d2c6" href="reglement.html">Règlement en vigueur</a>
         </div>
         <div>
           <p>Nous contacter</p>
