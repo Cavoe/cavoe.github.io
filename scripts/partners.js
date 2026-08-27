@@ -109,7 +109,7 @@ function partnersFromCSV(text) {
    Affichage
    ------------------------------------------------------------------------- */
 
-/* Un partenaire (réutilise le style .news__item) */
+/* Un partenaire */
 function partnerCard(partner) {
   return `
      <article class="card">
@@ -124,6 +124,19 @@ function partnerCard(partner) {
             <a class="btn btn--ghost" href="${partner.link}" target="_blank" rel="noopener">Visiter le site du ${partner.name}</a>
         </p>
      </article>`;
+}
+
+function partnerShortCard(partner) {
+  return `
+  <li>
+    <a class="logo-partenaires" 
+     href="${partner.link}" 
+     target="_blank" 
+     title="Visiter le site de ${partner.name}">
+     <img src="${partner.logoLink}" alt=""/>
+    </a>
+  </li>
+  `;
 }
 
 async function loadPartners() {
@@ -145,7 +158,30 @@ async function loadPartners() {
 
   partnersEl.innerHTML = partners.length
       ? partners.map(partnerCard).join('')
-      : `<li><div><p class="justified">Aucun partenaire pour l'instant.</p></div></li>`;
+      : `TODO`;
+}
+
+async function loadShortPartners() {
+  const partnersEl = document.getElementById('partners-short-list');
+  if (!partnersEl) return; // rien à remplir sur cette page
+
+  let partners = [];
+  try {
+    const res = await fetch(PARTENAIRES_URL, { cache: 'no-cache' });
+
+    if (!res.ok) throw new Error(res.status);
+    const text = await res.text();
+    partners = partnersFromCSV(text);
+  } catch (err) {
+    const msg = `La liste des partenaires n'a pas pu être chargé.`;
+    partnersEl.after(document.createElement('p').innerHTML(msg));
+    return;
+  }
+
+  partnersEl.innerHTML = partners.length
+      ? partners.map(partnerShortCard).join('')
+      : `TODO`;
 }
 
 document.addEventListener('DOMContentLoaded', loadPartners);
+document.addEventListener('DOMContentLoaded', loadShortPartners);
