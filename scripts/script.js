@@ -8,7 +8,7 @@
    ========================================================================= */
 
 const SITE_NAME = "CAVŒ";
-const SITE_TAGLINE = "Découvrir · Comprendre · Partager";
+const SITE_TAGLINE = "Partager · Découvrir · Savourer";
 const SITE_BASELINE = "Collections d'accessoires autour du vin et œnophiles";
 const LOGO_SRC = "assets/titre-cavoe.png";
 
@@ -16,6 +16,7 @@ const NAV_LINKS = [
     { href: "index.html",      label: "Accueil" },
     { href: "evenements.html", label: "Événements" },
     { href: "reglement.html", label: "Règlement" },
+    { href: "association.html", label: "L'association" },
 ];
 
 /* Page courante, pour surligner le bon lien */
@@ -56,7 +57,8 @@ function buildFooter() {
         </div>
         <div>
           <p>Nous connaître</p>
-          <a href="bureau.html">Le bureau</a>
+          <a style="display: block" href="association.html#creation">Notre histoire</a>
+          <a style="display: block" href="association.html#bureau">Le bureau</a>
         </div>
         <div>
           <p>Nous contacter</p>
