@@ -15,7 +15,8 @@
   --gold-soft: #f4cd76; /* doré clair (décoratif)             */
   --taupe: #a99a87; /* greige des coteaux / texte discret */
 
-  --ink: #33322f; /* charbon — texte principal          */
+  --ink: #44433f; /* charbon — texte principal          */
+  --ink-dark: #33322f; /* charbon foncé— texte marqué          */
   --ink-soft: #6b655c; /* texte secondaire                   */
   --bg: #fbf9f4; /* crème doux (fond)                  */
   --surface: #ffffff; /* cartes, encadrés                   */
@@ -79,7 +80,7 @@ h4 {
   margin: 0 0 0.5em;
 }
 h1 {
-  font-size: clamp(1.7rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.6rem, 3.1vw, 2.3rem);
   letter-spacing: 0.01em;
 }
 h2 {
@@ -123,6 +124,12 @@ img {
   outline: 3px solid var(--gold);
   outline-offset: 2px;
   border-radius: 3px;
+}
+
+.sigle {
+  font-size: larger;
+  font-weight: 900;
+  color: var(--ink-dark);
 }
 
 /* -------------------------------------------------------------------------
@@ -638,10 +645,6 @@ img {
 .justified {
   max-width: 100%;
   text-justify: inter-word;
-}
-
-.d-block {
-  display: block;
 }
 
 /* -------------------------------------------------------------------------
