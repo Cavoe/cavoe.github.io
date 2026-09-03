@@ -96,7 +96,8 @@ function headerToKey(header) {
     return 'access';
   if (n.includes('cible')) return 'audience';
   if (n.includes('libellé') || n.includes('libelle')) return 'linkLabel'; // avant « lien »
-  if (n.includes('lien')) return 'link';
+  if (n.includes('lien du site')) return 'link';
+  if (n.includes('lien de l\'illustration')) return 'image';
   return null;
 }
 
@@ -148,11 +149,12 @@ function eventCard(ev) {
     .filter(Boolean)
     .join(' · ');
   return `
-    <li class="news__item">
+    <li class="news__item${ev.image ? ' news__item--img' : ''}">
       <div class="news__date">
         ${dateLabel}
         ${ev.time ? `<span class="event-time">${ev.time}</span>` : ''}
       </div>
+      ${ev.image ? `<div class="news__media"><img src="${ev.image}" alt="" loading="lazy"></div>` : ''}
       <div>
         ${ev.tag ? `<span class="tag">${ev.tag}</span>` : ''}
         <h3>${ev.title}</h3>
