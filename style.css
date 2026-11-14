@@ -510,6 +510,9 @@ img {
   font-weight: 500;
   color: var(--ink-soft);
 }
+.event-description {
+  white-space: pre-line; /* conserve les retours à la ligne du tableur */
+}
 .event-meta {
   font-family: var(--font-ui);
   font-size: 0.82rem;

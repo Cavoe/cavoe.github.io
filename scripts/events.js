@@ -158,7 +158,7 @@ function eventCard(ev) {
       <div>
         ${ev.tag ? `<span class="tag">${ev.tag}</span>` : ''}
         <h3>${ev.title}</h3>
-        ${ev.description ? `<p class="justified">${ev.description}</p>` : ''}
+        ${ev.description ? `<p class="event-description justified">${ev.description}</p>` : ''}
         ${meta ? `<p class="event-meta justified">${meta}</p>` : ''}
         ${ev.link ? `<p class="event-link"><a href="${ev.link}" target="_blank" rel="noopener">${ev.linkLabel || 'En savoir plus'} →</a></p>` : ''}
       </div>
