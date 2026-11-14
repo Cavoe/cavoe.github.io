@@ -181,7 +181,9 @@ async function loadEvents() {
     const msg = `L'agenda n'a pas pu être chargé mais vous pouvez nous contacter à cavoe+contact@proton.me .`;
     [upEl, pastEl, homeEl].forEach((el) => {
       if (el) {
-        el.after(document.createElement('p').innerHTML(msg));
+        const p = document.createElement('p');
+        p.innerHTML = msg;
+        el.after(p);
       }
     });
     return;
@@ -209,10 +211,8 @@ async function loadEvents() {
       : `<li><div><p class="event-meta justified">Aucun événement passé pour le moment.</p></div></li>`;
   }
   if (homeEl) {
-    const latest = [...events]
-      .sort((a, b) => keyDate(b) - keyDate(a))
-      .slice(0, 3);
-    homeEl.innerHTML = latest.map(eventCard).join('');
+    const selection = (upcoming.length ? upcoming : past).slice(0, 3);
+    homeEl.innerHTML = selection.map(eventCard).join('');
   }
 }
 
