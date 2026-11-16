@@ -9,8 +9,10 @@
    (Fichier › Partager › Publier sur le web › format « .csv »).
    Les colonnes attendues (l'ordre importe peu, le repérage se fait par nom) :
      Titre · Catégorie · Date de début · Date de fin · Horaire · Lieu ·
-     Description · Conditions d'accès · Cible · Lien · Libellé du lien
-
+     Description · Prix · Cible · Lien du site · Libellé du lien ·
+     Lien de l'illustration · Inscription par mail requise ·
+     Titre mail d'inscription · Contenu mail d'inscription
+     
    Remarque : le chargement nécessite que le site soit servi par un serveur
    (GitHub Pages, ou « python3 -m http.server » en local). En ouvrant un
    fichier directement (double-clic), le navigateur peut bloquer la requête.
@@ -84,6 +86,12 @@ function normalizeHeader(h) {
 /* Fait correspondre un intitulé de colonne au nom de champ interne. */
 function headerToKey(header) {
   const n = normalizeHeader(header);
+  // Colonnes d'inscription par e-mail — testées avant « titre »
+  if (n.includes('mail')) {
+    if (n.includes('titre')) return 'mailSubject';
+    if (n.includes('contenu')) return 'mailBody';
+    if (n.includes('requis')) return 'mailRequired';
+  }
   if (n.includes('titre')) return 'title';
   if (n.includes('catégorie') || n.includes('categorie')) return 'tag';
   if (n.includes('date de début') || n.includes('date de debut'))
@@ -92,8 +100,7 @@ function headerToKey(header) {
   if (n.includes('horaire')) return 'time';
   if (n.includes('lieu')) return 'location';
   if (n.includes('description')) return 'description';
-  if (n.includes('condition') || n.includes('accès') || n.includes('acces'))
-    return 'access';
+  if (n.includes('prix')) return 'price';
   if (n.includes('cible')) return 'audience';
   if (n.includes('libellé') || n.includes('libelle')) return 'linkLabel'; // avant « lien »
   if (n.includes('lien du site')) return 'link';
@@ -142,12 +149,56 @@ function frDate(startISO, endISO) {
   return s.toLocaleDateString('fr-FR', opts);
 }
 
+/* L'inscription par e-mail est requise si la cellule vaut « x » ou « oui » */
+function mailRequired(ev) {
+  return /^(x|oui)$/i.test(ev.mailRequired || '');
+}
+
+/* Catégorie réduite aux lettres et chiffres, sans accents ni charactere speciaux
+   (ex. « Dégustation *» → « Degustation ») */
+function sanitizeCategory(tag) {
+  return (tag || '')
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-zA-Z0-9]/g, '')
+      .toLowerCase();
+}
+
+function getMailtoAddress(ev) {
+  return `cavoe+${sanitizeCategory(ev.tag)}${ev.start}@proton.me`;
+}
+
+/* Lien mailto: d'inscription — destinataire, objet et message */
+function mailtoLink(ev) {
+  const to = getMailtoAddress(ev);
+  const dateLabel = frDate(ev.start);
+  const subject =
+    ev.mailSubject ||
+    `Inscription à l'événement ${(ev.tag || '').replace(/\*/g, '').trim() || ev.title} du ${dateLabel}`;
+  const body =
+    ev.mailBody ||
+    [
+      'Bonjour,',
+      '',
+      `Je souhaite m'inscrire à l'événement « ${ev.title} » du ${frDate(ev.start, ev.end)}${ev.location ? ` (${ev.location})` : ''}.`,
+      `J'ai lu et j'accepte le réglement en vigueur, disponible sur le site https://cavoe.github.io.`,
+      '',
+      'Nom :',
+      'Prénom :',
+      'Nombre de personnes :',
+      'Téléphone :',
+      '',
+      'Merci et à bientôt,',
+    ].join('\n');
+  return `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 /* Un élément d'agenda (réutilise le style .news__item) */
 function eventCard(ev) {
   const dateLabel = frDate(ev.start, ev.end);
-  const meta = [ev.location, ev.access, ev.audience]
+  const meta = [ev.location, ev.price, ev.audience]
     .filter(Boolean)
-    .join(' · ');
+    .join(' . ');
   return `
     <li class="news__item${ev.image ? ' news__item--img' : ''}">
       <div class="news__date">
@@ -161,6 +212,7 @@ function eventCard(ev) {
         ${ev.description ? `<p class="event-description justified">${ev.description}</p>` : ''}
         ${meta ? `<p class="event-meta justified">${meta}</p>` : ''}
         ${ev.link ? `<p class="event-link"><a href="${ev.link}" target="_blank" rel="noopener">${ev.linkLabel || 'En savoir plus'} →</a></p>` : ''}
+        ${mailRequired(ev) ? `<p class="event-link"><a href="${mailtoLink(ev)}">Inscription par e-mail à ${getMailtoAddress(ev)}</a></p>` : ''}
       </div>
     </li>`;
 }
