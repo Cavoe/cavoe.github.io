@@ -222,7 +222,7 @@ function eventCard(ev) {
         ${ev.description ? `<p class="event-description justified">${ev.description}</p>` : ''}
         ${meta ? `<p class="event-meta justified">${meta}</p>` : ''}
         ${ev.link ? `<p class="event-link"><a href="${ev.link}" target="_blank" rel="noopener">${ev.linkLabel || 'En savoir plus'} →</a></p>` : ''}
-        ${mailRequired(ev) ? `<p class="event-link"><a href="${mailtoLink(ev)}">Inscription par e-mail à <strong>cavoe@proton.me</strong></a></p>` : ''}
+        ${mailRequired(ev) ? `<p class="event-link">Inscription par e-mail à <a href="${mailtoLink(ev)}">${getMailtoAddress(ev)}</a></p>` : ''}
       </div>
     </li>`;
 }
