@@ -12,7 +12,7 @@
      Description · Prix · Cible · Lien du site · Libellé du lien ·
      Lien de l'illustration · Inscription par mail requise ·
      Titre mail d'inscription · Contenu mail d'inscription
-     
+
    Remarque : le chargement nécessite que le site soit servi par un serveur
    (GitHub Pages, ou « python3 -m http.server » en local). En ouvrant un
    fichier directement (double-clic), le navigateur peut bloquer la requête.
@@ -214,7 +214,7 @@ function eventCard(ev) {
         ${ev.description ? `<p class="event-description justified">${ev.description}</p>` : ''}
         ${meta ? `<p class="event-meta justified">${meta}</p>` : ''}
         ${ev.link ? `<p class="event-link"><a href="${ev.link}" target="_blank" rel="noopener">${ev.linkLabel || 'En savoir plus'} →</a></p>` : ''}
-        ${mailRequired(ev) ? `<p class="event-link"><a href="${mailtoLink(ev)}">Inscription par e-mail à ${getMailtoAddress(ev)}</a></p>` : ''}
+        ${mailRequired(ev) ? `<p class="event-link"><a href="${mailtoLink(ev)}">Inscription par e-mail à <strong>cavoe@proton.me</strong></a></p>` : ''}
       </div>
     </li>`;
 }
