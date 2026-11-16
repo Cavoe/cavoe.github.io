@@ -16,7 +16,7 @@ const NAV_LINKS = [
     { href: "index.html",      label: "Accueil" },
     { href: "association.html", label: "L'association" },
     { href: "evenements.html", label: "Événements" },
-    { href: "reglement.html", label: "Règles" },
+    { href: "reglement.html", label: "Règlement" },
 ];
 
 /* Page courante, pour surligner le bon lien */
