@@ -10,7 +10,7 @@
    Les colonnes attendues (l'ordre importe peu, le repérage se fait par nom) :
      Titre · Catégorie · Date de début · Date de fin · Horaire · Lieu ·
      Description · Prix · Cible · Lien du site · Libellé du lien ·
-     Lien de l'illustration · Inscription par mail requise ·
+     Lien de l'illustration · Crédit de l'image · Inscription par mail requise ·
      Titre mail d'inscription · Contenu mail d'inscription
 
    Remarque : le chargement nécessite que le site soit servi par un serveur
@@ -105,6 +105,7 @@ function headerToKey(header) {
   if (n.includes('libellé') || n.includes('libelle')) return 'linkLabel'; // avant « lien »
   if (n.includes('lien du site')) return 'link';
   if (n.includes('lien de l\'illustration')) return 'image';
+  if (n.includes('crédit') || n.includes('credit')) return 'imageCredit';
   return null;
 }
 
@@ -206,7 +207,14 @@ function eventCard(ev) {
           ${dateLabel}
           ${ev.time ? `<span class="event-time">${ev.time}</span>` : ''}
         </div>
-        ${ev.image ? `<div class="news__media"><img src="${ev.image}" alt="" loading="lazy"></div>` : ''}
+        ${
+          ev.image
+            ? `<figure class="news__media">
+                <img src="${ev.image}" alt="" loading="lazy">
+                ${ev.imageCredit ? `<figcaption class="news__credit">© ${ev.imageCredit}</figcaption>` : ''}
+              </figure>`
+            : ''
+        }
       </div>
       <div>
         ${ev.tag ? `<span class="tag">${ev.tag}</span>` : ''}
