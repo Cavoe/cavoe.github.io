@@ -470,7 +470,7 @@ img {
 }
 .news__item {
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: 160px 1fr;
   gap: 1.5rem;
   padding: 1.4rem;
   background: var(--surface);
@@ -478,14 +478,11 @@ img {
   border-radius: var(--radius);
 }
 
-.news__item--img {
-  grid-template-columns: 130px minmax(0, 20%) 1fr;
-}
-
-.news__media {
+.news__aside {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 0.8rem;
+  min-width: 0;
 }
 
 .news__media img {
@@ -695,10 +692,6 @@ img {
   .news__item {
     grid-template-columns: 1fr;
     gap: 0.4rem;
-  }
-
-  .news__item--img {
-    grid-template-columns: 1fr;
   }
 
   .news__media img {
