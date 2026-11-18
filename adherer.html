@@ -21,27 +21,78 @@
             <h1>Devenir adhérent</h1>
             <p class="lead">
                 Envie de partage, de plaisir et d'émotions : telle est la philosophie de l'association ! <br/>
-                Alors rejoingnez nous !
+                Alors rejoignez-nous !
             </p>
         </div>
     </section>
 
+    <!-- ===================== CHOIX DE LA MÉTHODE ===================== -->
     <section class="section">
         <div class="wrap">
             <span class="eyebrow">Mode d'emploi</span>
-            <h2>Comment adhérer</h2>
+            <h2>Comment adhérer ?</h2>
+            <p>Deux possibilités, au choix :</p>
+            <div class="grid grid--2">
+                <a class="card card--link" href="#en-ligne">
+                    <h3>En ligne</h3>
+                    <p>Remplissez le formulaire et réglez votre cotisation directement en ligne, de façon sécurisée.</p>
+                </a>
+                <a class="card card--link" href="#par-email">
+                    <h3>Par e-mail</h3>
+                    <p>Envoyez-nous le bulletin d'adhésion rempli, puis réglez votre cotisation auprès d'un membre du bureau.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== OPTION 1 : HELLOASSO ===================== -->
+    <section class="section anchor" id="en-ligne">
+        <div class="wrap">
+            <span class="eyebrow">Inscription en ligne</span>
+            <h2>Adhérer en ligne</h2>
+            <p>
+                Avant de commencer, prenez le temps de lire le <a href="reglement.html">règlement de l'association</a>.
+                Le paiement est sécurisé par HelloAsso, la plateforme de paiement des associations.
+            </p>
+            <iframe id="haWidget"
+                    title="Formulaire d'adhésion HelloAsso"
+                    allow="payment 'self' https://paymenthub.helloassopay.com https://helloasso.com"
+                    allowtransparency="true"
+                    scrolling="auto"
+                    src="https://www.helloasso.com/associations/collections-accessoires-autour-du-vin-et-oenophiles/adhesions/adhesion-association-cavoe/widget"
+                    style="width: 100%; height: 750px; border: none;"></iframe>
+        </div>
+    </section>
+
+    <!-- ===================== OPTION 2 : PAR E-MAIL ===================== -->
+    <section class="section anchor" id="par-email">
+        <div class="wrap">
+            <span class="eyebrow">Inscription par mail</span>
+            <h2>Adhérer par e-mail</h2>
             <ol>
-                <li>Etape 1 : Lisez attentivement le <a href="reglement.html">règlement de l'association</a></li>
-                <li>Etape 2 : téléchargez et remplissez le <a href="assets/bulletin-adhesion.pdf" download="CAVOE-bulletin adhesion">formulaire suivant (PDF)</a></li>
-                <li>Etape 3 : Envoyez le formulaire à <a href="mailto:cavoe+adhesion@proton.me">cavoe+adhesion@proton.me</a></li>
-                <li>Etape 4 : Réglez le montant de votre adhésion auprès d'un des membre du bureau</li>
+                <li>Lisez attentivement le <a href="reglement.html">règlement de l'association</a>.</li>
+                <li>Téléchargez et remplissez le <a href="assets/bulletin-adhesion.pdf" download="CAVOE-bulletin-adhesion.pdf">bulletin d'adhésion (PDF)</a>.</li>
+                <li>Envoyez le bulletin rempli à <a href="mailto:cavoe+adhesion@proton.me">cavoe+adhesion@proton.me</a>.</li>
+                <li>Réglez le montant de votre adhésion auprès d'un des membres du bureau.</li>
             </ol>
-            <a class="btn btn--ghost" href="assets/bulletin-adhesion.pdf" download="CAVOE-bulletin adhesion">Télécharger le bulletin (PDF)</a>
+            <a class="btn btn--ghost" href="assets/bulletin-adhesion.pdf" download="CAVOE-bulletin-adhesion.pdf">Télécharger le bulletin (PDF)</a>
         </div>
     </section>
 </main>
 
 <div id="site-footer"></div>
 <script src="scripts/script.js"></script>
+<script>
+    // Le widget HelloAsso envoie sa hauteur : on agrandit l'iframe pour éviter
+    // une barre de défilement interne.
+    window.addEventListener('message', (e) => {
+        let host = '';
+        try { host = new URL(e.origin).hostname; } catch (err) { return; }
+        if (!/(^|\.)helloasso\.com$/.test(host)) return; // messages d'autres sites ignorés
+        const height = e.data && Number(e.data.height);
+        const frame = document.getElementById('haWidget');
+        if (frame && height > frame.offsetHeight) frame.style.height = height + 'px';
+    });
+</script>
 </body>
 </html>
